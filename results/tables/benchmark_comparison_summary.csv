@@ -1,0 +1,5 @@
+Task,Model,Balanced Acc,ROC-AUC,RMSE,R²
+Classification,XGBoost,0.5355176494802922,0.5453329216836472,,
+Classification,Majority Class,0.5,,,
+Regression,LSTM Regressor,,,0.015337675264566905,0.00729978084564209
+Regression,Historical Mean,,,0.015410049307807962,-0.0020908513261075345

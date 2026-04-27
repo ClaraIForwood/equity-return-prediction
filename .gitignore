@@ -1,0 +1,55 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb.bak
+
+# Notebook export artefacts
+notebooks/*.pdf
+notebooks/*.html
+notebooks/*.tex
+notebooks/*.aux
+notebooks/*.log
+notebooks/*.out
+notebooks/*_files/
+notebooks/printedOutput/
+"notebooks/Data Exploration.pdf"
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+.Trash-0/
+
+# Claude Code internal
+.claude/
+
+# LEAN algorithmic trading raw data (large, not dissertation-specific)
+Data/equity/
+Data/alternative/
+Data/cfd/
+Data/crypto/
+Data/forex/
+Data/future/
+Data/index/
+Data/market-hours/
+Data/option/
+Data/symbol-properties/
+Data/map_files/
+storage/
+
+# Large generated artifacts
+results/*.zip
+results/*.parquet
+results/figures/exploration/*.png
+
+# Processed data (reproducible from raw — comment out to commit)
+# data/processed/
+# data/features/

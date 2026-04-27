@@ -1,0 +1,6 @@
+model,notes,validation_accuracy,validation_precision,validation_recall,validation_f1,validation_balanced_accuracy,validation_roc_auc,test_accuracy,test_precision,test_recall,test_f1,test_balanced_accuracy,test_roc_auc
+XGBoost,Tree-based tabular baseline using XGBoost.,0.51,0.5584,0.4725,0.5119,0.5136,0.4922,0.5327,0.6159,0.5183,0.5629,0.5355,0.5453
+Majority Class,Predicts the most frequent direction observed in the training set.,0.5438,0.5438,1.0,0.7045,0.5,,0.5805,0.5805,1.0,0.7346,0.5,
+Logistic Regression,Linear baseline with train-only imputation and standardisation.,0.4721,0.5435,0.1832,0.274,0.4999,0.5004,0.446,0.5714,0.1829,0.2771,0.4965,0.4981
+Persistence,Predicts that tomorrow's direction will match today's sign of return.,0.502,0.5421,0.5421,0.5421,0.4981,,0.4832,0.5549,0.5549,0.5549,0.4694,
+MLP,"MLP (128, 64), ReLU, Adam, L2 alpha=1e-4. Train-only imputation and standardisation.",0.492,0.5312,0.5604,0.5455,0.4855,0.4746,0.4726,0.5962,0.2835,0.3843,0.5089,0.5158
