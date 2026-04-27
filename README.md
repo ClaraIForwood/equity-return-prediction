@@ -9,7 +9,7 @@ Can LSTM, Transformer, MLP, XGBoost, and Logistic Regression models trained on d
 ## Project Structure
 
 ```
-DissWork/
+equity-return-prediction/
 ├── notebooks/
 │   ├── 01_data_exploration.ipynb       # EDA and data cleaning
 │   ├── 02_feature_engineering.ipynb    # Feature construction and target labelling
