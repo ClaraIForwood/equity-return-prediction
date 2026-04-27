@@ -30,9 +30,8 @@ DissWork/
 
 - `config.py` — shared constants (data paths, symbols, train/val/test split dates)
 - `config.json` — machine-readable version of the same constants, used by ...
-- `lean.json` — QuantConnect LEAN configuration for the algorithmic trading 
-  strategy in `scripts/`. This is an exploratory extension to the dissertation 
-  and not required to run the core notebooks.
+- `lean.json` — QuantConnect LEAN configuration used to download the 
+  daily OHLCV equity data for the 16 symbols used in this project.
 
 ## Models
 
