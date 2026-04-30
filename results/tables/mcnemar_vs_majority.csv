@@ -1,0 +1,6 @@
+model,reference_model,b_ref_right_model_wrong,c_model_right_ref_wrong,chi2,p_value,significant
+Logistic Regression,Majority Class,268,192,12.2283,0.0005,Yes *
+MLP,Majority Class,87,72,1.2327,0.2669,No
+XGBoost,Majority Class,158,131,2.3391,0.1262,No
+LSTM,Majority Class,168,114,9.961,0.0016,Yes *
+Transformer,Majority Class,5,11,1.5625,0.2113,No

@@ -1,0 +1,4 @@
+model,reference_model,b_ref_right_model_wrong,c_model_right_ref_wrong,chi2,p_value,significant
+MLP,XGBoost,106,118,0.5402,0.4624,No
+LSTM,XGBoost,98,71,4.0,0.0455,Yes *
+Transformer,XGBoost,133,166,3.4247,0.0642,No
