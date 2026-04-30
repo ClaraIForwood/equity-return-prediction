@@ -9,7 +9,7 @@ Can LSTM, Transformer, MLP, XGBoost, and Logistic Regression models trained on d
 ## Project Structure
 
 ```
-DissWork/
+equity-return-prediction/
 ├── notebooks/
 │   ├── 01_data_exploration.ipynb       # EDA and data cleaning
 │   ├── 02_feature_engineering.ipynb    # Feature construction and target labelling
@@ -26,6 +26,12 @@ DissWork/
 ├── config.py                           # Shared constants (paths, symbols, split dates)
 └── requirements.txt
 ```
+## Additional Files
+
+- `config.py` — shared constants (data paths, symbols, train/val/test split dates)
+- `config.json` — machine-readable version of the same constants, used by ...
+- `lean.json` — QuantConnect LEAN configuration used to download the 
+  daily OHLCV equity data for the 16 symbols used in this project.
 
 ## Models
 
@@ -68,11 +74,11 @@ Classification (balanced accuracy on held-out test set):
 
 | Model | Balanced Accuracy | AUC-ROC |
 |---|---|---|
-| XGBoost | 0.536 | — |
-| MLP (PyTorch) | 0.509 | — |
-| LSTM | — | — |
-| Transformer | — | — |
-| Logistic Regression | — | — |
+| XGBoost | 0.536 | 0.545 |
+| MLP (PyTorch) | 0.509 | 0.504 |
+| LSTM | 0.484 | 0.507 |
+| Transformer | 0.516 | 0.526 |
+| Logistic Regression | 0.4965 | 0.498 |
 
 *(Full results in `results/tables/evaluation_summary.csv`)*
 
