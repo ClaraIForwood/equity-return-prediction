@@ -14,7 +14,6 @@ import time
 import warnings
 from pathlib import Path
 from typing import List, Optional, Tuple
-
 import numpy as np
 import pandas as pd
 import torch
@@ -504,24 +503,28 @@ def main():
     df.to_csv(OUT_PATH, index=False)
     print(f"\nSaved {len(df)} rows -> {OUT_PATH}")
 
-    print("\n" + "="*60)
-    print("SUMMARY  (mean ± std across seeds)")
-    print("="*60)
-
     clf_models = ["MLP Classifier", "LSTM Classifier", "Transformer Classifier"]
     reg_models = ["MLP Regressor",  "LSTM Regressor",  "Transformer Regressor"]
 
-    print("\nClassification — test balanced accuracy:")
-    for m in clf_models:
-        vals = df.loc[df["model"] == m, "test_balanced_accuracy"].values
-        print(f"  {m:<28s}  {vals.mean():.4f} ± {vals.std():.4f}  "
-              f"  (min={vals.min():.4f}  max={vals.max():.4f})")
+    def pivot_table(models, metric, fmt):
+        rows = []
+        for m in models:
+            sub  = df[df["model"] == m].set_index("seed")[metric]
+            row  = {f"seed={s}": fmt.format(sub[s]) for s in SEEDS}
+            row["mean"]    = fmt.format(sub.mean())
+            row["std"]     = fmt.format(sub.std())
+            rows.append({"model": m, **row})
+        return pd.DataFrame(rows).set_index("model")
 
-    print("\nRegression — test RMSE:")
-    for m in reg_models:
-        vals = df.loc[df["model"] == m, "test_rmse"].values
-        print(f"  {m:<28s}  {vals.mean():.6f} ± {vals.std():.6f}  "
-              f"  (min={vals.min():.6f}  max={vals.max():.6f})")
+    print("\n" + "=" * 72)
+    print("SUMMARY — Classification: test balanced accuracy")
+    print("=" * 72)
+    print(pivot_table(clf_models, "test_balanced_accuracy", "{:.4f}").to_string())
+
+    print("\n" + "=" * 72)
+    print("SUMMARY — Regression: test RMSE")
+    print("=" * 72)
+    print(pivot_table(reg_models, "test_rmse", "{:.6f}").to_string())
 
 
 if __name__ == "__main__":

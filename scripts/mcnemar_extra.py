@@ -10,12 +10,15 @@ Uses identical implementation to notebook Cell 83:
   - c = model correct & reference wrong
 """
 
+import io
 import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from statsmodels.stats.contingency_tables import mcnemar
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 # ── Project root ──────────────────────────────────────────────────────────────
 def find_project_root(marker: str = "config.py") -> Path:
@@ -75,12 +78,24 @@ rows_task1 = [
 ]
 df1 = pd.DataFrame(rows_task1)
 
-print("=" * 68)
-print("TASK 1 — Each trained model vs Majority Class baseline (alpha=0.05)")
-print("=" * 68)
-print(df1.to_string(index=False))
-print()
+def pretty_print(df, title):
+    display = df[["model", "b_ref_right_model_wrong", "c_model_right_ref_wrong",
+                  "chi2", "p_value", "significant"]].rename(columns={
+        "model":                    "Model",
+        "b_ref_right_model_wrong":  "b (ref✓ mdl✗)",
+        "c_model_right_ref_wrong":  "c (mdl✓ ref✗)",
+        "chi2":                     "χ²",
+        "p_value":                  "p-value",
+        "significant":              "Sig. (α=0.05)",
+    })
+    print("=" * 72)
+    print(title)
+    print("=" * 72)
+    print(display.to_string(index=False))
+    print()
 
+
+pretty_print(df1, "TASK 1 — Each trained model vs Majority Class baseline")
 df1.to_csv(TABLES_DIR / "mcnemar_vs_majority.csv", index=False)
 print(f"Saved -> {TABLES_DIR / 'mcnemar_vs_majority.csv'}\n")
 
@@ -97,11 +112,6 @@ rows_task2 = [
 ]
 df2 = pd.DataFrame(rows_task2)
 
-print("=" * 68)
-print("TASK 2 — Deep learning models vs XGBoost (alpha=0.05)")
-print("=" * 68)
-print(df2.to_string(index=False))
-print()
-
+pretty_print(df2, "TASK 2 — Deep learning models vs XGBoost")
 df2.to_csv(TABLES_DIR / "mcnemar_dl_vs_xgboost.csv", index=False)
 print(f"Saved -> {TABLES_DIR / 'mcnemar_dl_vs_xgboost.csv'}")
